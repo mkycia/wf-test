@@ -4,6 +4,9 @@ on:
   repository_dispatch:
     types: [ns-create-webhook]
 
+permissions:
+  contents: write
+
 jobs:
   create-ns:
     runs-on: ubuntu-latest
