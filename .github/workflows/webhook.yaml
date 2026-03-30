@@ -9,7 +9,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print message
-        run: echo "Webhook triggered!"
+        run: echo "ns-create-webhook triggered!"
 
       - name: Print payload
-        run: echo "${{ github.event.client_payload.message }}"        
+        run: echo "${{ github.event.client_payload.message }}"
+      
+      - name: Generate namespace manifest from dispatch payload
+        shell: bash
+        run: |
+          FILE_NAME="manifests/${{ github.event.client_payload.ns_name }}.yaml"
+
+          cat > "$FILE_NAME" <<EOF
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: ${{ github.event.client_payload.ns_name }}
+            labels:
+              env: ${{ github.event.client_payload.labels.env }}
+            annotations:
+              owner: ${{ github.event.client_payload.annotations.owner }}
+          EOF
+
+          echo "Created $FILE_NAME"
+          cat "$FILE_NAME"
+
+      - name: Commit and push file
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${{ github.event.client_payload.ns_name }}.yaml"
+          git commit -m "Add namespace manifest for ${{ github.event.client_payload.ns_name }}" || echo "No changes to commit"
+          git push                
