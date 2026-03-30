@@ -5,7 +5,7 @@ on:
     types: [ns-create-webhook]
 
 jobs:
-  run:
+  create-ns:
     runs-on: ubuntu-latest
     steps:
       - name: Print message
