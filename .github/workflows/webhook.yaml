@@ -13,7 +13,10 @@ jobs:
 
       - name: Print payload
         run: echo "${{ github.event.client_payload.message }}"
-      
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
       - name: Generate namespace manifest from dispatch payload
         shell: bash
         run: |
