@@ -1,0 +1,15 @@
+name: Webhook trigger
+
+on:
+  repository_dispatch:
+    types: [my-webhook]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print message
+        run: echo "Webhook triggered!"
+
+      - name: Print payload
+        run: echo "${{ github.event.client_payload.message }}"        

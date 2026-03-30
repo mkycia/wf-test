@@ -1,0 +1,6 @@
+{
+  "event_type": "my-webhook",
+  "client_payload": {
+    "message": "hello from webhook"
+  }
+}
