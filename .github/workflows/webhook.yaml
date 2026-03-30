@@ -1,8 +1,8 @@
-name: Webhook trigger
+name: ns-create-webhook
 
 on:
   repository_dispatch:
-    types: [my-webhook]
+    types: [ns-create-webhook]
 
 jobs:
   run:

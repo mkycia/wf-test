@@ -1,6 +1,13 @@
 {
-  "event_type": "my-webhook",
+  "event_type": "ns-create-webhook",
   "client_payload": {
-    "message": "hello from webhook"
+    "message": "ns-create-webhook",
+    "ns_name": "app-ns-dev",
+    "labels": {
+      "env": "dev"
+    },
+    "annotations": {
+      "owner": "appowner"
+    }
   }
 }
