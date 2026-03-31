@@ -2,7 +2,7 @@
   "event_type": "ns-create-webhook",
   "client_payload": {
     "message": "ns-create-webhook",
-    "ns_name": "app-ns-dev",
+    "ns_name": "app-ns1-dev",
     "labels": {
       "env": "dev"
     },
